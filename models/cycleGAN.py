@@ -320,15 +320,16 @@ class CycleGAN():
                 elapsed_time = datetime.datetime.now() - start_time
 
                 # Plot the progress
-                print ("[Epoch %d/%d] [Batch %d/%d] [D loss: %f, acc: %3d%%] [G loss: %05f, adv: %05f, recon: %05f, id: %05f] time: %s " \
-                    % ( self.epoch, epochs,
-                        batch_i, data_loader.n_batches,
-                        d_loss[0], 100*d_loss[7],
-                        g_loss[0],
-                        np.sum(g_loss[1:3]),
-                        np.sum(g_loss[3:5]),
-                        np.sum(g_loss[5:7]),
-                        elapsed_time))
+                if batch_i % 100 == 0:
+                    print ("[Epoch %d/%d] [Batch %d/%d] [D loss: %f, acc: %3d%%] [G loss: %05f, adv: %05f, recon: %05f, id: %05f] time: %s " \
+                        % ( self.epoch, epochs,
+                            batch_i, data_loader.n_batches,
+                            d_loss[0], 100*d_loss[7],
+                            g_loss[0],
+                            np.sum(g_loss[1:3]),
+                            np.sum(g_loss[3:5]),
+                            np.sum(g_loss[5:7]),
+                            elapsed_time))
 
                 self.d_losses.append(d_loss)
                 self.g_losses.append(g_loss)
